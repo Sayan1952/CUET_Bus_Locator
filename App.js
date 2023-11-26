@@ -1,8 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import LoadingScreen from './LoadingScreen';
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [busLocation, setBusLocation] = useState({
     latitude: 22.3475, // Replace with your initial bus latitude
     longitude: 91.8123, // Replace with your initial bus longitude
@@ -11,6 +13,12 @@ const App = () => {
   });
 
   const mapRef = useRef(null); // Ref for MapView
+  useEffect(() => {
+    // Simulating loading time with setTimeout
+    setTimeout(() => {
+      setIsLoading(false); // Set isLoading to false after the loading time (simulated)
+    }, 2000); // Simulated loading time of 2000ms (2 seconds)
+  }, []);
 
   const animateToBus = () => {
     if (mapRef.current) {
@@ -18,7 +26,8 @@ const App = () => {
     }
   };
 
-  return (
+   const renderMap = ()=> 
+   { return (
     <View style={styles.container}>
       <MapView
         ref={mapRef} // Assigning the ref to the MapView
@@ -38,7 +47,10 @@ const App = () => {
       </TouchableOpacity>
     </View>
   );
-};
+        };
+
+return isLoading ? <LoadingScreen /> : renderMap(); 
+        };
 
 const styles = StyleSheet.create({
   container: {
