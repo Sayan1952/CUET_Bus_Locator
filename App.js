@@ -6,8 +6,8 @@ const App = () => {
   const [busLocation, setBusLocation] = useState({
     latitude: 22.3475, // Replace with your initial bus latitude
     longitude: 91.8123, // Replace with your initial bus longitude
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitudeDelta: 0.0034,
+    longitudeDelta: 0.0056,
   });
 
   const mapRef = useRef(null); // Ref for MapView
@@ -30,7 +30,7 @@ const App = () => {
             latitude: busLocation.latitude,
             longitude: busLocation.longitude,
           }}
-          title="Bus Marker"
+          title="Padma"
         />
       </MapView>
       <TouchableOpacity style={styles.button} onPress={animateToBus}>
